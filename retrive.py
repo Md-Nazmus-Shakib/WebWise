@@ -1,10 +1,15 @@
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 import query_search_vdb
-import main
 import query
-def chat(qry,cont):
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+def chat(qry, cont):
+    api_key = os.getenv("GROQ_API_KEY")
     llm = ChatGroq(
+        api_key=api_key,
         model="llama-3.3-70b-versatile",
         temperature=0.2
     )

@@ -1,117 +1,57 @@
-Running locally (with data persistence)
-Running locally (with data persistence)
-Query by turning into retriever
-Usage for retrieval-augmented generation
-This notebook covers how to get started with the
-is a AI-native open-source vector database focused on developer productivity and happiness. Chroma is licensed under Apache 2.0. View the full docs of
-, and find the API reference for the LangChain integration at
-Chroma Cloud powers serverless vector and full-text search. It’s extremely fast, cost-effective, scalable and painless. Create a DB and try it out in under 30 seconds with $5 of free credits.
-vector stores you’ll need to install the
-vector store without any credentials, simply installing the package above is enough!
-package you also get access to the Chroma CLI, which can set these for you. First,
+Embeddings | LangChain Reference
+for conceptual guides, tutorials, and examples on using Embeddings.
+, several embeddings modules were moved to
+of moved modules to inform your migration.
 :
-If you want to get best in-class automated tracing of your model calls you can also set your
-API key by uncommenting below:
-"Enter your LangSmith API key: "
-Below is a basic initialization, including the use of a directory to save the data locally.
-# | output: false
-# | echo: false
-You can get a Chroma server running in memory by simply instantiating a
-instance with a collection name and your embeddings provider:
-If you don’t need data persistence, this is a great option for experimenting while building your AI application with LangChain.
-Running locally (with data persistence)
-argument to save your data across multiple runs of your program:
-If you have a Chroma server running locally, or you have
-one yourself, you can connect to it by providing the
-For example, you can start a Chroma server running locally with
 :
-For other deployments you can use the
-arguments to customize your connection.
-Chroma Cloud users can also build with LangChain. Provide your
-instance with your Chroma Cloud API key, tenant, and DB name:
-client, which is particularly useful if you want easier access to the underlying database.
-Running locally (with data persistence)
-For example, if you are running a Chroma server locally (using
-):
-8000
-, you can simply instantiate:
-client.get_or_create_collection(
-Once you have created your vector store, we can interact with it by adding and deleting different items.
-We can add items to our vector store by using the
-"I had chocolate chip pancakes and scrambled eggs for breakfast this morning."
 :
-1
-"The weather forecast for tomorrow is cloudy and overcast, with a high of 62 degrees."
+Initialize an embedding model from a model name and optional provider.
+Requires the integration package for the chosen model provider to be installed.
+parameter below for specific package names
+provider integration's API reference
+for supported model parameters to use as
+'openai:text-embedding-3-small'
+You can also specify model and model provider in a single argument using
+'{model_provider}:{model}'
+'openai:text-embedding-3-small'
+TYPE:
+The model provider if not specified as part of the model arg
+values and the corresponding integration package
+are:
+TYPE:
+DEFAULT:
+Additional model-specific parameters passed to the embedding model.
+These vary by provider. Refer to the specific model provider's
+TYPE:
+DEFAULT:
+instance that can generate embeddings for text.
+If the model provider is not supported or cannot be determined
+If the required provider package is not installed
+# pip install langchain langchain-openai
+"openai:text-embedding-3-small"
+"openai:text-embedding-3-small"
+Bases:
+Interface for embedding models.
+This is an interface meant for implementing text embedding models.
+Text embedding models are used to map text to a vector (a point in n-dimensional
+Texts that are similar will usually be mapped to points that are close to each
+other in this space. The exact details of what's considered "similar" and how
+"distance" is measured in this space are dependent on the specific embedding model.
+This abstraction contains a method for embedding a list of documents and a method
+for embedding a query text. The embedding of a query text is expected to be a single
+vector, while the embedding of a list of documents is expected to be a list of
+Usually the query embedding is identical to the document embedding, but the
+abstraction allows treating them independently.
+In addition to the synchronous methods, this interface also provides asynchronous
+By default, the asynchronous methods are implemented using the synchronous methods;
+however, implementations may choose to override the asynchronous methods with
+an async native implementation for performance reasons.
 :
-2
-"Building an exciting new project with LangChain - come check it out!"
+TYPE:
 :
-3
-"Robbers broke into the city bank and stole $1 million in cash."
+TYPE:
 :
-4
-"Wow! That was an amazing movie. I can't wait to see it again."
+Asynchronous Embed search docs.
+TYPE:
 :
-5
-"Is the new iPhone worth the price? Read this review to find out."
-:
-6
-"The top 10 soccer players in the world right now."
-:
-7
-"LangGraph is the best framework for building stateful, agentic applications!"
-:
-8
-"The stock market is down 500 points today due to fears of a recession."
-:
-9
-"I have a bad feeling I am going to get deleted :("
-:
-10
-Now that we have added documents to our vector store, we can update existing documents by using the
-"I had chocolate chip pancakes and fried eggs for breakfast this morning."
-:
-1
-"The weather forecast for tomorrow is sunny and warm, with a high of 82 degrees."
-:
-2
-0
-# You can also update multiple documents at once
-uuids[:
-2
-[updated_document_1, updated_document_2]
-We can also delete items from our vector store as follows:
-1
-Once your vector store has been created and the relevant documents have been added you will most likely wish to query it during the running of your chain or agent.
-Performing a simple similarity search can be done as follows:
-vector_store.similarity_search(
-"LangChain provides abstractions to make working with LLMs easy"
-2
-:
-results:
-If you want to execute a similarity search and receive the corresponding scores you can run:
-vector_store.similarity_search_with_score(
-1
-:
-results:
-:3f}
-You can also search by vector:
-vector_store.similarity_search_by_vector(
-1
-results:
-There are a variety of other search methods that are not covered in this notebook, such as MMR search. For a full list of the search abilities available for
-Query by turning into retriever
-You can also transform the vector store into a retriever for easier usage in your chains. For more information on the different search types and kwargs you can pass, please visit the API reference
-:
-1
-:
-5
-"Stealing from the bank is a crime"
-:
-Usage for retrieval-augmented generation
-For guides on how to use this vector store for retrieval-augmented generation (RAG), see the following sections:
-How-to: Question and answer with RAG
-For detailed documentation of all
-vector store features and configurations head to the API reference:
-python.langchain.com/api_reference/chroma/vectorstores/langchain_chroma.vectorstores.Chroma.html
-to Claude, VSCode, and more via MCP for real-time answers.
+TYPE:
