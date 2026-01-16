@@ -51,7 +51,7 @@ api_key = os.getenv("GROQ_API_KEY")
 
 st.set_page_config(page_title="Web RAG Agent", layout="wide")
 
-st.title("🔍 Web Document Q&A Agent")
+st.title("🔍 WebWise")
 st.write("Ask questions based **only** on a scraped webpage")
 
 # -----------------------------

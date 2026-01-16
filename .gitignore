@@ -32,4 +32,4 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
-G:\Agentic Ai\API_documentation\.env
+.env
