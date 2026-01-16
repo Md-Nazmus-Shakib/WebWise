@@ -1,0 +1,13 @@
+beautifulsoup4 #to extract the data from webpage
+requests #to download the webpage
+# groq
+langchain
+# faiss-cpu
+chromadb
+openai
+pandas
+# groq
+sentence_transformers 
+langchain-groq
+dotenv
+streamlit
