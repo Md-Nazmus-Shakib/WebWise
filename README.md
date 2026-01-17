@@ -63,11 +63,11 @@ WebWise/
 ├── scrap.py               # Web scraping functionality
 ├── clean.py               # Text cleaning and preprocessing
 ├── chunk.py               # Text chunking for processing
-├── embeding.py            # Text embedding generation
+├── embeding.py            # Text embedding generation (note: filename has typo)
 ├── vector_db.py           # ChromaDB vector database operations
 ├── query.py               # Query embedding generation
 ├── query_search_vdb.py    # Semantic search in vector database
-├── retrive.py             # LLM integration for answer generation
+├── retrive.py             # LLM integration for answer generation (note: filename has typo)
 ├── requirements.txt       # Project dependencies
 ├── .env                   # Environment variables (create this)
 └── chroma_db/            # ChromaDB storage directory (auto-created)
@@ -111,13 +111,13 @@ def chunk_text(text, chunk_size=200):  # Adjust chunk_size as needed
 ```
 
 ### Embedding Model
-Change the model in `embeding.py`:
+Change the model in `embeding.py` (filename has a typo):
 ```python
 model = SentenceTransformer('all-MiniLM-L6-v2')  # Try other models
 ```
 
 ### LLM Model
-Update the model in `retrive.py`:
+Update the model in `retrive.py` (filename has a typo):
 ```python
 model="llama-3.3-70b-versatile"  # Use other Groq models
 ```
